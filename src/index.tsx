@@ -1,4 +1,4 @@
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules, NativeEventEmitter, Platform } from 'react-native';
 
 const LINKING_ERROR =
   `The package 'react-native-barcodeoldarch' doesn't seem to be linked. Make sure: \n\n` +
@@ -19,4 +19,12 @@ const Barcodeoldarch = NativeModules.Barcodeoldarch
 
 export function multiply(a: number, b: number): Promise<number> {
   return Barcodeoldarch.multiply(a, b);
+}
+
+export function scan() {
+  return Barcodeoldarch.scan();
+}
+
+export function InitEvents(): NativeEventEmitter {
+  return new NativeEventEmitter(NativeModules.Barcodeoldarch)
 }
